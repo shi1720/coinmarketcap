@@ -1,4 +1,4 @@
-# Release verification — 30 September 2026
+# Release verification - 30 September 2026
 
 Observed results, not a production security certification.
 

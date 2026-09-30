@@ -1,4 +1,5 @@
 "use client";
+/* eslint-disable @next/next/no-html-link-for-pages -- This dashboard is shared with the framework-neutral Firebase SPA. */
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
   ShieldCheck,
@@ -245,16 +246,27 @@ function CoverageChart({ analysis }: { analysis: TreasuryAnalysis }) {
     </div>
   );
 }
+const defaultRequest: typeof fetch = (...args) => fetch(...args);
 export default function Dashboard({
   user,
   initial,
   initialRevision = 0,
   personal = false,
+  request = defaultRequest,
+  signIn,
+  signOut,
+  authLabel = "ChatGPT",
+  draftKey,
 }: {
   user: { name: string; email: string } | null;
   initial: Workspace;
   initialRevision?: number;
   personal?: boolean;
+  request?: typeof fetch;
+  signIn?: () => Promise<void>;
+  signOut?: () => Promise<void>;
+  authLabel?: string;
+  draftKey?: string;
 }) {
   const [workspace, setWorkspace] = useState(initial);
   const [revision, setRevision] = useState(initialRevision);
@@ -282,7 +294,7 @@ export default function Dashboard({
   const [evidenceOpen, setEvidenceOpen] = useState(false);
   const refreshRef = useRef(false);
   const toolState = useRef({ workspace, market, now });
-  toolState.current = { workspace, market, now };
+  useEffect(() => { toolState.current = { workspace, market, now }; }, [workspace, market, now]);
   useEffect(() => {
     const context = (
       document as Document & {
@@ -308,12 +320,59 @@ export default function Dashboard({
     return () => lifecycle.abort();
   }, []);
   const dirty = JSON.stringify(workspace) !== saved;
+  const localDraftKey = draftKey ?? `runway-guard-draft:${personal ? user?.email ?? "personal" : "sample"}`;
+  const draftLoaded = useRef(false);
+  useEffect(() => {
+    if (draftLoaded.current) return;
+    draftLoaded.current = true;
+    try {
+      const transferred = personal ? sessionStorage.getItem("runway-guard-signin-draft") : null;
+      const raw = transferred ?? localStorage.getItem(localDraftKey);
+      if (raw) {
+        const parsed = workspaceSchema.safeParse(JSON.parse(raw));
+        if (parsed.success && JSON.stringify(parsed.data) !== saved) {
+          queueMicrotask(() => {
+            setWorkspace(parsed.data);
+            toast.info("Recovered your unsaved draft from this browser.");
+          });
+        }
+        if (transferred) sessionStorage.removeItem("runway-guard-signin-draft");
+      }
+    } catch { /* Storage may be unavailable in private browser modes. */ }
+  }, [localDraftKey, saved, personal]);
+  useEffect(() => {
+    if (!draftLoaded.current) return;
+    try {
+      if (dirty) localStorage.setItem(localDraftKey, JSON.stringify(workspace));
+      else localStorage.removeItem(localDraftKey);
+    } catch { /* Draft remains in memory if browser storage is full. */ }
+  }, [workspace, dirty, localDraftKey]);
+  useEffect(() => {
+    if (!dirty) return;
+    const guard = (event: BeforeUnloadEvent) => { event.preventDefault(); event.returnValue = ""; };
+    window.addEventListener("beforeunload", guard);
+    return () => window.removeEventListener("beforeunload", guard);
+  }, [dirty]);
+  async function beginSignIn() {
+    try {
+      if (dirty) sessionStorage.setItem("runway-guard-signin-draft", JSON.stringify(workspace));
+      if (signIn) await signIn();
+      else window.location.href = "/signin-with-chatgpt?return_to=/workspace";
+    } catch (error) { toast.error(error instanceof Error ? error.message : "Sign-in could not start."); }
+  }
+  async function beginSignOut() {
+    if (dirty && !window.confirm("Your unsaved draft stays in this browser. Sign out now?")) return;
+    try {
+      if (signOut) await signOut();
+      else window.location.href = "/signout-with-chatgpt?return_to=/";
+    } catch (error) { toast.error(error instanceof Error ? error.message : "Sign-out failed."); }
+  }
   const refresh = useCallback(async () => {
     if (refreshRef.current) return;
     refreshRef.current = true;
     setLoading(true);
     try {
-      const r = await fetch("/api/market", { cache: "no-store" });
+      const r = await request("/api/market", { cache: "no-store" });
       const d = (await r.json()) as MarketSnapshot & { error?: string };
       if (!r.ok) throw Error(d.error || "Could not load market data.");
       setMarket(d);
@@ -325,19 +384,19 @@ export default function Dashboard({
       setLoading(false);
       refreshRef.current = false;
     }
-  }, []);
+  }, [request]);
   useEffect(() => {
-    void refresh();
+    const initialRefresh = setTimeout(() => void refresh(), 0);
     const timer = setInterval(() => {
       setNow(new Date().toISOString());
       if (document.visibilityState === "visible") void refresh();
     }, 60000);
-    return () => clearInterval(timer);
+    return () => { clearTimeout(initialRefresh); clearInterval(timer); };
   }, [refresh]);
   const loadReports = useCallback(async () => {
     if (!user || !personal) return;
     try {
-      const r = await fetch("/api/reports");
+      const r = await request("/api/reports");
       const d = (await r.json()) as {
         reports?: { id: string; created_at: string }[];
       };
@@ -349,9 +408,10 @@ export default function Dashboard({
         "Decision history is temporarily unavailable. Your workspace is preserved.",
       );
     }
-  }, [user, personal]);
+  }, [user, personal, request]);
   useEffect(() => {
-    void loadReports();
+    const initialLoad = setTimeout(() => void loadReports(), 0);
+    return () => clearTimeout(initialLoad);
   }, [loadReports]);
   const validation = useMemo(
     () => workspaceSchema.safeParse(workspace),
@@ -409,7 +469,7 @@ export default function Dashboard({
     update({ stress: { ...workspace.stress, ...patch } });
   async function save() {
     if (!user || !personal) {
-      window.location.href = "/signin-with-chatgpt?return_to=/workspace";
+      await beginSignIn();
       return;
     }
     if (!validation.success) {
@@ -418,7 +478,7 @@ export default function Dashboard({
     }
     setBusy(true);
     try {
-      const r = await fetch("/api/workspace", {
+      const r = await request("/api/workspace", {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ workspace, revision }),
@@ -445,7 +505,7 @@ export default function Dashboard({
     try {
       let next: DecisionRecord;
       if (user && personal) {
-        const r = await fetch("/api/reports", {
+        const r = await request("/api/reports", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ workspace, sample: isSample }),
@@ -477,7 +537,7 @@ export default function Dashboard({
   }
   async function openReport(id: string) {
     try {
-      const r = await fetch("/api/reports?id=" + encodeURIComponent(id));
+      const r = await request("/api/reports?id=" + encodeURIComponent(id));
       const d = (await r.json()) as DecisionRecord & { error?: string };
       if (!r.ok) throw Error(d.error);
       setRecord(d);
@@ -534,6 +594,7 @@ export default function Dashboard({
                 className="sign-in"
                 href="/signout-with-chatgpt?return_to=/"
                 target="_top"
+                onClick={(event) => { event.preventDefault(); void beginSignOut(); }}
               >
                 Sign out
               </a>
@@ -541,12 +602,14 @@ export default function Dashboard({
           ) : (
             <a
               className="sign-in"
+              title={`Sign in with ${authLabel}`}
               href={
                 user
                   ? "/workspace"
                   : "/signin-with-chatgpt?return_to=/workspace"
               }
               target="_top"
+              onClick={(event) => { if (signIn || !user) { event.preventDefault(); void beginSignIn(); } }}
             >
               {user ? "My workspace" : "Sign in to save"}
             </a>
@@ -665,17 +728,17 @@ export default function Dashboard({
               <Stat
                 dark
                 label="Accessible runway"
-                value={result ? runwayLabel(result.current) : "—"}
+                value={result ? runwayLabel(result.current) : "-"}
                 note="Net market marks · locked assets excluded"
               />
               <Stat
                 label="Under your stress scenario"
-                value={result ? runwayLabel(result.stressed) : "—"}
+                value={result ? runwayLabel(result.stressed) : "-"}
                 note={`${workspace.stress.volatileShockPct}% crypto decline · ${workspace.stress.stableShockPct}% ${workspace.stress.stableSymbol} decline`}
               />
               <Stat
                 label="Fiat reserve gap"
-                value={result ? money(result.reservePlan.fiatGap) : "—"}
+                value={result ? money(result.reservePlan.fiatGap) : "-"}
                 note={`${workspace.config.targetReserveMonths}-month cash policy, including commitments`}
               />
               <Stat
@@ -808,7 +871,7 @@ export default function Dashboard({
                 )}
                 <div className="coverage-summary">
                   <span>Required over the next 30 days</span>
-                  <strong>{day30 ? money(day30.totalRequired) : "—"}</strong>
+                  <strong>{day30 ? money(day30.totalRequired) : "-"}</strong>
                 </div>
               </div>
               <div className="panel">
@@ -972,7 +1035,7 @@ export default function Dashboard({
                         <TableCell>
                           {market?.quotes[h.cmcId]
                             ? money(h.amount * market.quotes[h.cmcId].price)
-                            : "—"}
+                            : "-"}
                         </TableCell>
                         <TableCell>
                           <button
@@ -1406,7 +1469,7 @@ export default function Dashboard({
                   {result && hasCommitments
                     ? result.stressed.runwayMonths.toFixed(1) +
                       (result.stressed.runwayCapped ? "+" : "")
-                    : "—"}
+                    : "-"}
                   <span>months of runway</span>
                 </div>
                 <p className="subtle">
@@ -1416,7 +1479,7 @@ export default function Dashboard({
                 </p>
                 <div className="comparison">
                   <span>Current marks</span>
-                  <strong>{result ? runwayLabel(result.current) : "—"}</strong>
+                  <strong>{result ? runwayLabel(result.current) : "-"}</strong>
                 </div>
                 <div className="comparison">
                   <span>Locked + scenario-frozen</span>
@@ -1426,7 +1489,7 @@ export default function Dashboard({
                           result.stressed.lockedTotal +
                             result.stressed.frozenTotal,
                         )
-                      : "—"}
+                      : "-"}
                   </strong>
                 </div>
                 <div className="comparison">
@@ -1475,7 +1538,7 @@ export default function Dashboard({
                 <div>
                   <span>Cash target</span>
                   <strong>
-                    {result ? money(result.reservePlan.targetFiat) : "—"}
+                    {result ? money(result.reservePlan.targetFiat) : "-"}
                   </strong>
                 </div>
                 <div>
@@ -1485,13 +1548,13 @@ export default function Dashboard({
                 <div>
                   <span>Estimated conversion</span>
                   <strong>
-                    {result ? money(result.reservePlan.plannedProceeds) : "—"}
+                    {result ? money(result.reservePlan.plannedProceeds) : "-"}
                   </strong>
                 </div>
                 <div>
                   <span>Remaining unfunded</span>
                   <strong>
-                    {result ? money(result.reservePlan.remainingGap) : "—"}
+                    {result ? money(result.reservePlan.remainingGap) : "-"}
                   </strong>
                 </div>
               </div>

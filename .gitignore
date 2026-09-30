@@ -47,3 +47,10 @@ next-env.d.ts
 
 !.env.example
 *.tsbuildinfo
+
+/firebase-dist/
+firebase-debug.log
+/firestore-debug.log
+
+/dist-firebase/
+/firebase-public-config.json
