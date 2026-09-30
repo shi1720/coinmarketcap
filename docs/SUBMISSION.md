@@ -33,15 +33,17 @@ The reserve what-if is planning only. The app does not trade, execute payroll, p
 
 **Endpoint actually used:** `GET /v3/cryptocurrency/quotes/latest`.
 
-The current no-key deployment calls the real production public route:
+The live server calls:
 
 ```text
-https://pro-api.coinmarketcap.com/public-api/v3/cryptocurrency/quotes/latest
+https://pro-api.coinmarketcap.com/v3/cryptocurrency/quotes/latest
 ```
 
-It requests the five supported assets by stable CMC numeric IDs, in USD, and handles the V3 asset and quote arrays. Live response evidence is available in the product. A server-side authenticated integration uses the same endpoint with `X-CMC_PRO_API_KEY`; secrets must never enter the browser or repository.
+It authenticates with an existing participant-owned CMC key in the server runtime using `X-CMC_PRO_API_KEY`. A verified request returned HTTP 200 with all five supported assets, and the Firebase browser displayed authenticated live data. The key does not appear in public evidence, browser responses or the repository. The V3 parser matches canonical asset IDs and USD quote arrays.
 
-**Campaign access status:** Real keyless CMC data is integrated. A participant-owned campaign API key and authenticated call evidence are still required before claiming completion of the hackathon's own-key rule. Registration and the matching CMC account email must also be verified. Public API availability does not remove those event requirements.
+Sanitized evidence is in `evidence/cmc-request.json` and `evidence/cmc-authenticated-response.json`. Earlier genuine calls to `/public-api/v3/cryptocurrency/quotes/latest` are retained as fallback evidence.
+
+**Campaign access status:** The existing API account is Basic. Campaign Startup grant status remains unverified. This build demonstrates an authenticated call using the participant's existing key, but does not claim the campaign grant, paid licensing approval or complete event compliance.
 
 **What CMC made possible:** One batched request supplies consistent prices, asset identity, timestamps and market context across volatile tokens and stablecoins. That lets the product translate market observations into operating coverage rather than present another price dashboard.
 

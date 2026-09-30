@@ -27,7 +27,7 @@ Repository: https://github.com/shi1720/coinmarketcap
 
 ## Deployment-specific account checks
 
-Firebase Hosting is live. Google sign-in succeeded in the deployed application as Shivam Gupta. Google and anonymous account providers are enabled, and the Firebase domain is authorized. Live keyless CMC data also appeared in the deployed browser.
+Firebase Hosting is live. Google sign-in succeeded in the deployed application as Shivam Gupta. Google and anonymous account providers are enabled, and the Firebase domain is authorized. Authenticated live CMC data appeared in the deployed browser after the server secret was configured. Earlier keyless data evidence remains available.
 
 To test a saved account, sign in with Google or choose a guest account, save a workspace, reload it and confirm persistence. Create a report, change the workspace, and confirm the saved report does not change. In a second account, verify that the first account's records remain inaccessible. Guest accounts are tied to their Firebase anonymous identity, so use Google sign-in for a recoverable account.
 
@@ -52,4 +52,4 @@ This suite uses the isolated `demo-runway-guard` emulator project. It does not m
 
 ## Data and scope
 
-The current integration uses real keyless CoinMarketCap data. Campaign-key evidence remains pending. Quotes are aggregated marks, not executable liquidity. Stress scenarios are assumptions, and all input amounts use USD. There are no payroll payments, autonomous trades, billing or deployed alerts.
+The live integration uses an existing participant-owned CMC key, configured only in the server runtime. The authenticated five-asset quote call returned HTTP 200. Earlier real keyless calls remain documented fallback evidence. The account is Basic. Campaign Startup access remains unverified. Quotes are aggregated marks, not executable liquidity. Stress scenarios are assumptions, and all input amounts use USD. There are no payroll payments, autonomous trades, billing or deployed alerts.

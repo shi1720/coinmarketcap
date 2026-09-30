@@ -26,7 +26,7 @@ I can sign in with Google, save my own workspace, and preserve a report with the
 
 The business hypothesis is a focused tool for small crypto-native teams and their finance operators. There is no claimed customer traction or paid billing yet. The working product is the readiness workflow you just saw.
 
-This build uses real keyless CoinMarketCap data today. Campaign-key evidence and registration still need completion before the final hackathon submission. Runway Guard turns market prices into a concrete operating question: are the next obligations covered, and what assumptions does that answer depend on?
+This build now uses an existing participant-owned CoinMarketCap key, with a verified authenticated call. Campaign Startup access remains unverified. Runway Guard turns market prices into a concrete operating question: are the next obligations covered, and what assumptions does that answer depend on?
 
 ## Screen actions
 
@@ -43,6 +43,6 @@ This build uses real keyless CoinMarketCap data today. Campaign-key evidence and
 
 ## Final-recording updates
 
-If participant campaign-key evidence and registration have been verified, replace only the penultimate sentence with: **“This build uses CoinMarketCap quotes, and the submission includes an authenticated call made with my participant API key.”** Do not make that replacement before evidence exists.
+Authenticated own-key evidence is now verified. Keep the Basic account and unverified campaign Startup grant distinction accurate.
 
 Keep real keys, email inboxes and personal account details out of the recording. Use the fictional workspace throughout. Upload the video and insert its actual URL into the submission and X draft.

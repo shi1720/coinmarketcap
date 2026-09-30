@@ -6,7 +6,7 @@ Observed results, not a production security certification.
 - Three Firestore emulator integration tests pass, including cross-account access denial and report immutability.
 - Firebase Hosting deployment succeeded at https://runway-guard-cmc.web.app.
 - Google sign-in succeeded live as Shivam Gupta. Google and anonymous providers are enabled, and the Firebase domain is authorized.
-- The deployed browser displayed genuine keyless CMC quotes.
+- The deployed browser displayed authenticated live CMC quotes after an existing participant-owned key was configured server-side. A five-asset authenticated quote request returned HTTP 200. Earlier keyless evidence is retained.
 - 25/25 live production Firestore REST checks passed using two distinct ephemeral anonymous-auth identities. See [Live-Privacy-Test.md](Live-Privacy-Test.md) for the exercised access, revision and report-immutability paths.
 
 ## Verification limits
@@ -15,4 +15,4 @@ Live Google sign-in and production-service storage checks provide separate evide
 
 ## Submission status
 
-The participant-owned campaign CMC key and authenticated call evidence remain unavailable. Do not claim own-key compliance. Registration, eligibility, video upload, DoraHacks entry and X post require their own confirmation. No customer traction or revenue is claimed.
+An existing participant-owned CMC key is configured in the server runtime, and authenticated HTTP 200 five-asset evidence is captured. The account is Basic. Campaign Startup access remains unverified, so do not claim the campaign grant or complete event compliance. Registration, eligibility, video upload, DoraHacks entry and X post require their own confirmation. No customer traction or revenue is claimed.

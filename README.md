@@ -36,21 +36,25 @@ All financial balances in the public sample are fictional. Market quotes are rea
 
 The integrated endpoint is **`GET /v3/cryptocurrency/quotes/latest`**, in USD, batched for five IDs.
 
-Without a key, the server calls:
+The live backend uses an existing participant-owned CMC key and calls:
 
 ```text
-https://pro-api.coinmarketcap.com/public-api/v3/cryptocurrency/quotes/latest?id=1,1027,5426,3408,825&convert=USD
+https://pro-api.coinmarketcap.com/v3/cryptocurrency/quotes/latest?id=1,1027,5426,3408,825&convert=USD
 ```
 
-With `CMC_API_KEY`, it uses the authenticated root and `X-CMC_PRO_API_KEY` header. The key stays in the server environment and never enters browser responses, evidence files or Git. V3 assets and their quotes are arrays; the normalizer requires matching IDs, symbols, valid prices and USD timestamps.
+It authenticates with the `X-CMC_PRO_API_KEY` header. A verified authenticated request returned HTTP 200 with all five assets, and the Firebase browser displayed fresh authenticated live data. The key stays in the native Sites server runtime and never enters browser responses, sanitized evidence files or Git. No new API key was created.
+
+The account is Basic. Campaign Startup grant status remains unverified. Sanitized [request metadata](evidence/cmc-request.json) and [authenticated response](evidence/cmc-authenticated-response.json) provide reproducible evidence without publishing the key.
+
+When no server key is configured, the same normalizer supports the genuine keyless public route at `/public-api/v3/cryptocurrency/quotes/latest`. Earlier keyless responses remain in the evidence directory as fallback and development history. V3 assets and their quotes are arrays. The normalizer requires matching IDs, symbols, valid prices and USD timestamps.
 
 The cache lasts five minutes, uses D1 plus isolate memory, and shares in-flight refreshes. Storage failure preserves a successful upstream response. Network errors, 429 and 5xx get at most three attempts with bounded timeouts and backoff. Permanent HTTP failures do not retry. Failed refreshes use labelled stale evidence and a 30-second cooldown. Missing prices are excluded and block readiness.
 
-**Hackathon compliance:** real keyless CMC calls are captured in [evidence](evidence/README.md). The participant-owned campaign key and authenticated evidence remain unavailable. DoraHacks registration and submission status must be verified separately. Keyless availability does not waive the hackathon’s own-key rule.
+**Hackathon status:** an authenticated call using the participant's existing key is verified and captured in [evidence](evidence/README.md). The Basic account does not establish receipt of the campaign Startup grant, which remains unverified. DoraHacks registration/contact information is saved and Markets and Trading Tools is selected. Final legal agreement and public submission/publication steps remain separate. Do not claim the campaign grant, paid licensing approval or complete event compliance.
 
 ## Run the Firebase application locally
 
-Prerequisites: Node.js **22.13+**, npm, and internet access for CMC quotes. No paid LLM or API key is required for public market data.
+Prerequisites: Node.js **22.13+**, npm, and internet access for CMC quotes. No paid LLM is required. Development can use the documented keyless route; the deployed backend now uses the participant's existing CMC key.
 
 ```bash
 git clone https://github.com/shi1720/coinmarketcap.git

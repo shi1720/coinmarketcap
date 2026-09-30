@@ -37,6 +37,9 @@ async function requestMarket(
 }
 const service = createMarketService({
   request: requestMarket,
+  onFailure: (diagnostic) => {
+    console.warn("Runway Guard market refresh failed", diagnostic);
+  },
   read: async () => {
     const row = await database()
       .prepare("SELECT data FROM market_cache WHERE key=?")

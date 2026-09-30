@@ -55,3 +55,5 @@ Core calculations are deterministic, so they require no LLM token spend. Hosting
 2. Ask them to compare a Runway Guard report with their existing spreadsheet and identify errors or missing assumptions.
 3. Offer a paid pilot at the proposed Operator price; use actual acceptance and retention, not survey enthusiasm, to judge demand.
 4. Measure support time, quote credits, storage growth and repeat report use before expanding features.
+
+Current API access: An existing participant-owned CMC key authenticates the live server call. HTTP 200 evidence includes all five supported assets. The account is Basic. Campaign Startup access and commercial licensing approval remain unverified. Earlier genuine keyless calls are retained as fallback evidence.

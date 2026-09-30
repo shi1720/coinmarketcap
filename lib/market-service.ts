@@ -5,18 +5,37 @@ type Dependencies = {
   read: () => Promise<MarketSnapshot | null>;
   write: (snapshot: MarketSnapshot) => Promise<void>;
   now?: () => number;
+  onFailure?: (diagnostic: string) => void;
 };
+/** Only fixed diagnostic codes may leave the server. Never return raw errors or request details. */
+export function marketFailureDiagnostic(error: unknown): string {
+  if (error instanceof SyntaxError) return "CMC_INVALID_JSON";
+  if (!(error instanceof Error)) return "CMC_REFRESH_FAILED";
+  const http = /^CMC request unavailable \(HTTP ([1-5]\d{2})\)\.$/.exec(
+    error.message,
+  );
+  if (http) return `CMC_HTTP_${http[1]}`;
+  if (error.message === "CMC network request unavailable.")
+    return "CMC_NETWORK_UNAVAILABLE";
+  if (error.message === "CMC returned an invalid response.")
+    return "CMC_INVALID_RESPONSE";
+  if (error.message === "No valid CMC prices returned.")
+    return "CMC_NO_VALID_QUOTES";
+  return "CMC_REFRESH_FAILED";
+}
 /** Shared cache, in-flight deduplication and a failure cooldown. Storage is best-effort. */
 export function createMarketService({
   request,
   read,
   write,
   now = Date.now,
+  onFailure,
 }: Dependencies) {
   let memory: MarketSnapshot | null = null;
   let pending: Promise<MarketSnapshot> | null = null;
   let failureAt = 0;
   let failureSource: Source | null = null;
+  let failureDiagnostic = "CMC_REFRESH_FAILED";
   return async function get(source: Source): Promise<MarketSnapshot> {
     let saved = memory;
     if (
@@ -45,8 +64,7 @@ export function createMarketService({
         return {
           ...saved,
           cache: "stale" as const,
-          error:
-            "Refresh failed. Prices below are from the last successful CMC call.",
+          error: `Refresh failed (${failureDiagnostic}). Prices below are from the last successful CMC call.`,
         };
       throw new Error(
         "Market data temporarily unavailable. Please retry shortly.",
@@ -69,9 +87,15 @@ export function createMarketService({
       });
     try {
       return await pending;
-    } catch {
+    } catch (error) {
       failureAt = now();
       failureSource = source;
+      failureDiagnostic = marketFailureDiagnostic(error);
+      try {
+        onFailure?.(failureDiagnostic);
+      } catch {
+        /* Diagnostics cannot alter failure handling. */
+      }
       return stale();
     }
   };

@@ -15,7 +15,7 @@ Public repository: https://github.com/shi1720/coinmarketcap
 
 Track: Markets and Trading Tools
 CMC endpoint: /v3/cryptocurrency/quotes/latest
-Data access: Real production keyless CMC API. Participant campaign-key evidence is pending.
+Data access: Authenticated CMC API using an existing participant-owned key, with a verified HTTP 200 five-asset response. Earlier real keyless calls remain fallback evidence. Basic account. Campaign Startup access is unverified.
 
 The sample company and balances are fictional. Stress scenarios are assumptions, not forecasts. Reserve estimates do not execute trades or guarantee sale proceeds. No customer traction, billing or autonomous trading is claimed.
 

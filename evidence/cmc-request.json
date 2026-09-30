@@ -1,8 +1,8 @@
 {
   "method": "GET",
-  "endpoint": "https://pro-api.coinmarketcap.com/public-api/v3/cryptocurrency/quotes/latest?id=1,1027,5426,3408,825&convert=USD",
-  "capturedAt": "2026-09-30T10:59:31.571Z",
-  "source": "keyless",
+  "endpoint": "https://pro-api.coinmarketcap.com/v3/cryptocurrency/quotes/latest?id=1,1027,5426,3408,825&convert=USD",
+  "capturedAt": "2026-09-30T11:56:41.688Z",
+  "source": "authenticated",
   "status": 200,
   "returnedAssets": [
     {

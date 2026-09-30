@@ -50,7 +50,8 @@ async function marketRequest() {
   return fetch(new URL("/api/market", marketOrigin), {
     cache: "no-store",
     credentials: "omit",
-    signal: AbortSignal.timeout(20_000),
+    // Allow the server's three 7-second attempts and bounded retry delays.
+    signal: AbortSignal.timeout(25_000),
   });
 }
 function firebaseMessage(error: unknown): string {

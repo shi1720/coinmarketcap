@@ -14,7 +14,7 @@ The application excludes locked holdings from funding calculations, compares cur
 
 The calculation engine uses canonical CoinMarketCap IDs and batched USD quotes from `/v3/cryptocurrency/quotes/latest`. Cash totals use cent precision. Monthly payroll schedules its share of total operating burn, so the same expense does not appear twice. The interface makes the scenario assumptions and data evidence inspectable.
 
-The working CMC integration uses the production keyless public route. Participant campaign-key evidence remains pending. The interface runs on Firebase Hosting. A shared server-side CMC integration supplies market data. The account implementation uses Firebase Authentication and Firestore.
+The live CMC integration uses an existing participant-owned API key. An authenticated GET /v3/cryptocurrency/quotes/latest returned HTTP 200 with all five assets. Sanitized request and response evidence is included. Earlier real keyless calls are retained as fallback evidence. The account is Basic, and the campaign Startup grant remains unverified. The interface runs on Firebase Hosting. A shared server-side CMC integration supplies market data. The account implementation uses Firebase Authentication and Firestore.
 
 ## Challenges we ran into
 

@@ -13,7 +13,7 @@
 
 - [x] Inspect a fresh successful response from `/v3/cryptocurrency/quotes/latest` in the application.
 - [x] Capture endpoint, safe request parameters, response and timestamps without any API secret.
-- [ ] Configure the participant-owned campaign key server-side and capture authenticated response evidence.
+- [x] Configure the existing participant-owned CMC key server-side and capture authenticated HTTP 200 five-asset request/response evidence. Campaign Startup access remains unverified.
 - [x] Verify graceful failure, stale quote warnings and missing-quote blocked readiness.
 - [ ] Verify the public repository contains no keys, account cookies or private workspace records.
 

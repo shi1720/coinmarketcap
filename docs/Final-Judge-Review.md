@@ -1,0 +1,69 @@
+# Final independent judge review
+
+**Runway Guard, built by Shivam Gupta**  
+**Review date:** 30 September 2026  
+**Track:** Markets and Trading Tools  
+**Estimated product score: 89/100. This is an internal review, not an official judge score or a prediction of winning.**
+
+[Live application](https://runway-guard-cmc.web.app) · [Narrated demo](https://runway-guard-cmc.web.app/demo.html) · [Public repository](https://github.com/shi1720/coinmarketcap)
+
+## Rubric assessment
+
+| Criterion | Score | Evidence and remaining deduction |
+|---|---:|---|
+| Does it work | **29/30** | Recorded release evidence includes 41 unit tests, three Firestore rule tests and passing CI for commit `997d01b` (run `36709191529`). I independently performed the documented 25 live Firebase privacy checks: both account owners could save/read fictional records, cross-account and unauthenticated requests were rejected, workspace revisions were enforced and report overwrites were rejected. The implementation owner also observed live Google and guest save/reload/report workflows and the repaired guest-to-existing-Google transition. Operational monitoring, recovery and availability over time are not demonstrated by these checks. |
+| Usefulness to a real person | **22/25** | The product answers a finance operator's concrete question: can dated payroll and bills be covered using available assets and fiat? Payment cliffs, locked holdings, access freezes, stablecoin stress and saved decision records give it a coherent repeatable job. There are no validated customers, paid pilots or measured reductions in work yet. |
+| Interesting use of the API | **14/20** | Genuine authenticated CMC V3 quotes for five canonical IDs become obligation coverage, fiat reserve gaps and conversion what-ifs, with inspectable sanitized raw response evidence. An existing participant-owned key returned HTTP 200 for all five assets; the live Firebase source badge displayed authenticated fresh data at 11:56 UTC. The API supplies real prices and timestamps rather than decorative charts. The integration uses one quote endpoint; its API breadth and novelty are below an exceptional multi-endpoint research or automation entry. |
+| Code quality and documentation | **14/15** | Deterministic cent accounting, explicit assumptions, malformed-response guards, retries, cache failure handling, schemas, private Firestore rules, immutable stored snapshots and revision conflicts have meaningful verification. Documentation explains Firebase hosting and the retained shared market backend, local setup, test commands, limitations and trust boundaries. Browser-calculated reports have no independent backend financial attestation, and operational retention/recovery procedures remain launch work. |
+| Presentation | **10/10** | The question-led interface, fiat-shortfall story, responsive screens, source evidence, report exports, pitch materials and captioned narrated 2:11 demo provide a clear demonstration. The presentation consistently separates fictional balances, real CMC prices and assumed scenarios. This score assesses the prepared materials and observed product evidence; it does not imply official acceptance of the submission. |
+| **Total** | **89/100** | Strong product execution, with customer validation and distinctive API depth providing the largest remaining opportunities. |
+
+## What makes the entry stand out
+
+The strongest opening is already present in the product: **the treasury has months of marked runway, but fiat cannot cover the next payroll.** This is relatable, visible and decision-oriented. The sample's dated cash cliff makes the difference between asset valuation and immediately usable cash understandable in seconds.
+
+The entry earns credibility by exposing assumptions instead of manufacturing confidence. It distinguishes locked assets, scenario-frozen assets, stablecoin marks, fiat cash and fee-adjusted planning proceeds. It does not treat CMC aggregate volume as executable liquidity. Preserved inputs and raw quote evidence help another person review the calculation later.
+
+Treasury planning and stress testing are existing categories. The defensible claim is a focused, approachable obligation-first workflow for smaller crypto-native teams, not invention of the category or a proprietary pricing-data moat.
+
+## Commercial viability
+
+The customer and recurring job are plausible: small crypto-funded teams and fractional finance operators checking the next payment cycle. Manual onboarding, deterministic calculations and a shared five-asset price cache keep the initial service relatively lean. They do not establish actual unit economics, acquisition cost or willingness to pay.
+
+Proposed $29/$79 plans remain hypotheses. Billing, alerts, collaboration and integrations are not shipped, so the current product should be sold or tested only on capabilities it actually provides. The next meaningful validation is a finance operator comparing this report with their current spreadsheet, followed by a paid-pilot offer. Expanding the asset universe before obtaining that evidence would not automatically improve commercial viability.
+
+The current architecture depends on both Firebase and a retained Sites market service. Hosting and quote-cache costs, authentication usage, Firestore writes, support, backups and licensing must be measured before making margin claims. The application's deterministic calculation path has no LLM inference cost. CMC licensing for a paid B2B workflow remains an explicit unresolved launch dependency.
+
+## Submission compliance is separate from product quality
+
+The quoted rubric score does **not** establish a valid hackathon entry.
+
+- The existing CMC key on the correct participant account was verified through an authenticated `GET /v3/cryptocurrency/quotes/latest` call returning HTTP 200 and all five assets. It is stored as a server secret in the retained Sites market service, not in browser configuration. Sanitized evidence is saved in `evidence/cmc-authenticated-response.json` and `evidence/cmc-request.json`. The live Firebase source badge displayed authenticated fresh data at 11:56 UTC. The account is on Basic; receipt of the campaign Startup grant and campaign issuance of this key remain unverified. Do not describe the key as confirmed campaign-issued. Earlier keyless call evidence is genuine historical fallback evidence, not the current primary source.
+- A public repository and deployed working application exist. A narrated captioned demo is already available at the hosted demo link. A separate YouTube upload is pending user confirmation at its terms step; this is separate from the existence of the hosted recording.
+- DoraHacks registration is verified on the correct participant account by the existing Unregister control. The profile, project story, team draft and user-provided contact fields are saved. The primary phone field and backup WhatsApp contact were accepted. Markets and Trading Tools is selected in the submission draft. A saved draft is not a submitted entry; the Terms of Use and participant agreement acceptance remain pending the user.
+- Final BUIDL creation and the required published X post remain incomplete. The correct X profile, `@ShivamGuptaim`, is logged in. The submission requires an X-post URL while that post needs a public BUIDL link, so the implementation owner is resolving the remaining creation/publication sequence. Do not invent either URL or describe a draft as published. Eligibility beyond observed registration still needs its own confirmation.
+
+Registration, contact entry, track selection and an actual participant-owned authenticated API call are now observed facts. Remaining publication, terms acceptance and campaign-grant verification must still be distinguished from those completed steps.
+
+## Financial trust and security limits
+
+Firebase rules enforce ownership and reject modification or deletion of saved report documents. The live checks support those specific claims. They do not certify every possible authentication state, browser, Firebase setting or attack path.
+
+The Firebase report is calculated in the browser. A technically capable account owner can supply a fabricated payload through their own authenticated write request while complying with the Firestore field rules. A preserved report is therefore **an immutable stored user record, not an independently authenticated financial attestation**. The code and README disclose that boundary. Do not call the reports tamper-proof accounting, backend-verified solvency or certified audit evidence.
+
+Inputs remain self-reported, CMC prices remain aggregate observations, and conversion proceeds remain planning estimates. No wallet or bank balance is independently verified. No trade, payment, settlement or redemption is executed or guaranteed.
+
+Before commercial launch, complete monitoring, retention/deletion policy, backup and restore procedures, licensing review and independent operational security review. Test passes and CI success are evidence of exercised behavior, not production-readiness certification.
+
+## Concrete final improvements
+
+1. Replace the remaining `docs/SUBMISSION.md` video placeholder with the existing hosted demo URL now. Keep an eventual YouTube URL as an additional link if the user completes that upload. Update checklist language so it distinguishes the existing recording from optional external publication.
+2. Preserve the saved registration, contact details and selected track. Obtain the user's pending terms acceptance, then resolve the BUIDL-link/X-post sequence using actual public URLs and verify the resulting published pages.
+3. Update submission copy to name the authenticated call and sanitized evidence. Keep the Basic-plan/campaign-Startup-grant distinction accurate; successful use of an existing key does not prove campaign issuance or a grant upgrade.
+4. Preserve the current browser-calculation disclosure in reports and submission copy. No new test run is warranted solely to change these links or wording.
+
+The product is a strong, reviewable hackathon build. The greatest immediate risk is the remaining submission and publication sequence, not absence of a working demo or authenticated API call. Winning cannot be guaranteed, and the present score should be treated as a skeptical internal estimate.
+
+## Factual update
+
+This review incorporates the later observed authenticated CMC call, existing DoraHacks registration, saved contacts and selected track. The internal product score remains 89/100; these observations strengthen release evidence without changing the integration's endpoint breadth or validating commercial demand. No key, token, phone number or private contact value is included here.
