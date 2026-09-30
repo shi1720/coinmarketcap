@@ -3,7 +3,12 @@ import { database } from "@/lib/storage";
 import { getMarket } from "@/lib/cmc";
 import { analyzeTreasury } from "@/lib/analysis";
 import { workspaceSchema } from "@/lib/workspace";
-import { sameOrigin, boundedJson, privateJson } from "@/lib/http";
+import {
+  sameOrigin,
+  boundedJson,
+  privateJson,
+  HttpInputError,
+} from "@/lib/http";
 export const dynamic = "force-dynamic";
 export async function GET(r: Request) {
   const u = await getChatGPTUser();
@@ -97,7 +102,9 @@ export async function POST(r: Request) {
       .bind(record.id, u.userId, JSON.stringify(record), now)
       .run();
     return privateJson(record, 201);
-  } catch {
+  } catch (error) {
+    if (error instanceof HttpInputError)
+      return privateJson({ error: error.message }, error.status);
     return privateJson(
       { error: "Could not create a report. Your workspace is preserved." },
       503,

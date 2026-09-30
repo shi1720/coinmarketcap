@@ -1,7 +1,12 @@
 import { getChatGPTUser } from "@/app/chatgpt-auth";
 import { database } from "@/lib/storage";
 import { workspaceSchema } from "@/lib/workspace";
-import { sameOrigin, boundedJson, privateJson } from "@/lib/http";
+import {
+  sameOrigin,
+  boundedJson,
+  privateJson,
+  HttpInputError,
+} from "@/lib/http";
 export const dynamic = "force-dynamic";
 export async function GET() {
   const u = await getChatGPTUser();
@@ -70,7 +75,9 @@ export async function PUT(r: Request) {
         409,
       );
     return privateJson({ revision: body.revision + 1, updatedAt: now });
-  } catch {
+  } catch (error) {
+    if (error instanceof HttpInputError)
+      return privateJson({ error: error.message }, error.status);
     return privateJson(
       { error: "Could not save. Your draft is still here." },
       503,

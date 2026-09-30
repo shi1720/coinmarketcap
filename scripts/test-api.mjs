@@ -26,6 +26,16 @@ const headers = {
   Origin: base,
   "Content-Type": "application/json",
 };
+for (const path of ["/api/workspace", "/api/reports"]) {
+  const method = path.endsWith("workspace") ? "PUT" : "POST";
+  for (const [body, status] of [
+    ["{", 400],
+    ["null", 400],
+    ["x".repeat(32769), 413],
+  ]) {
+    check((await fetch(base + path, { method, headers, body })).status, status);
+  }
+}
 const old = await fetch(base + "/api/workspace", { headers }).then((r) =>
   r.json(),
 );
