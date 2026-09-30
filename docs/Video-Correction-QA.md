@@ -20,3 +20,5 @@ The script now uses spoken letter names for CSV and USD, separates Coin Market C
 - X does not allow editing this post without Premium. A correction reply links the replacement video and submission from the original thread.
 
 The assistant cannot directly audition audio in this environment. No claim of perfect pronunciation or human listening approval is made.
+
+Release verification: code and corrected media commit 2623b1c873221a25526a9331be9552b395a3fc18 passed GitHub CI https://github.com/shi1720/coinmarketcap/actions/runs/36719900226. Both production deployments succeeded.
