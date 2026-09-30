@@ -4,10 +4,10 @@
 
 ## Deadline and eligibility
 
-- [ ] Verify DoraHacks registration through the [official hackathon page](https://coinmarketcap.com/api/resources/api-hackathon/) and the participant's matching CMC account email.
-- [ ] Verify eligibility and team size under the official rules.
-- [ ] Submit before **30 September 2026, 23:59 UTC**, equivalent to **1 October 2026, 05:29 IST**. Aim earlier.
-- [ ] Select exactly one track: **Markets and Trading Tools**.
+- [x] Verify DoraHacks registration on the correct participant account.
+- [x] User confirmed the participant agreement at the action step. No independent eligibility certification is claimed.
+- [x] Submitted before **30 September 2026, 23:59 UTC**, equivalent to **1 October 2026, 05:29 IST**. Aim earlier.
+- [x] Selected track: **Markets and Trading Tools**.
 
 ## Real API evidence
 
@@ -30,8 +30,8 @@
 - [x] Verify the current/stress chart and reserve what-if update after inputs change.
 - [x] Verify missing or stale data cannot produce an unqualified reassuring state.
 - [x] Local mock sign-in, save, reload and report persistence verified.
-- [ ] Hosted sign-in/save/reload: email verification code required; not completed.
-- [ ] Verify a different identity cannot access another user's workspace or reports.
+- [x] Firebase Google and guest sign-in/save/reload verified. Guest-to-existing-Google transition restores the existing workspace.
+- [x] Verify ownership through 25/25 live REST privacy checks using two separate anonymous-auth identities, plus three emulator rule tests.
 - [x] Save a report, change inputs, and verify the earlier report remains unchanged.
 - [ ] Export JSON and open the printable report; inspect readability and assumptions.
 - [x] Run the calculation tests, type checks and build; record actual outcomes in the README or verification notes.
@@ -41,11 +41,11 @@
 
 - [x] Public repository: https://github.com/shi1720/coinmarketcap (confirmed by successful Firebase Hosting deployment status).
 - [ ] Verify README setup steps, actual deployed URL, endpoint, limitations and attribution.
-- [ ] Replace submission placeholders with real deployment and video URLs.
-- [ ] Record the demo using `DEMO-SCRIPT.md`; confirm narrated capabilities match the deployed app.
-- [ ] Upload a publicly viewable demo video.
-- [ ] Submit the DoraHacks entry and verify its public URL.
-- [ ] Replace X draft placeholders, check length and publish the required #BuildwithCMC post linking submission and video.
+- [x] Use the verified Firebase, YouTube and BUIDL URLs.
+- [x] Publish the final 131.328-second authenticated demo, 17 scenes and 35 caption cues: https://youtu.be/CYLWG-bSSB8.
+- [x] Publish YouTube video: https://youtu.be/CYLWG-bSSB8. Playback verified.
+- [x] Submit the DoraHacks entry: https://dorahacks.io/buidl/49254. Confirmed under review. Public visibility awaits moderation.
+- [x] Publish the required X post linking BUIDL and YouTube with #BuildwithCMC: https://x.com/ShivamGuptaim/status/2105269446298550656.
 - [ ] Verify all links from a signed-out browser.
 
 ## Honest claims and commercial follow-up

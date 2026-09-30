@@ -4,7 +4,7 @@
 
 Built by **Shivam Gupta** for Build with CMC. Track: **Markets and Trading Tools**.
 
-[Demo](https://runway-guard-cmc.web.app) · [Submission description](docs/SUBMISSION.md) · [Verbatim video script](docs/DEMO-SCRIPT.md) · [Business hypothesis](docs/BUSINESS.md)
+[Demo](https://runway-guard-cmc.web.app) · [YouTube](https://youtu.be/CYLWG-bSSB8) · [DoraHacks BUIDL](https://dorahacks.io/buidl/49254) · [X post](https://x.com/ShivamGuptaim/status/2105269446298550656) · [Submission description](docs/SUBMISSION.md) · [Verbatim video script](docs/DEMO-SCRIPT.md) · [Business hypothesis](docs/BUSINESS.md)
 
 A crypto-funded team can have months of marked treasury value and still lack cash for Friday’s payroll. Runway Guard turns CoinMarketCap quotes and dated commitments into a repeatable operating decision.
 
@@ -50,7 +50,7 @@ When no server key is configured, the same normalizer supports the genuine keyle
 
 The cache lasts five minutes, uses D1 plus isolate memory, and shares in-flight refreshes. Storage failure preserves a successful upstream response. Network errors, 429 and 5xx get at most three attempts with bounded timeouts and backoff. Permanent HTTP failures do not retry. Failed refreshes use labelled stale evidence and a 30-second cooldown. Missing prices are excluded and block readiness.
 
-**Hackathon status:** an authenticated call using the participant's existing key is verified and captured in [evidence](evidence/README.md). The Basic account does not establish receipt of the campaign Startup grant, which remains unverified. DoraHacks registration/contact information is saved and Markets and Trading Tools is selected. Final legal agreement and public submission/publication steps remain separate. Do not claim the campaign grant, paid licensing approval or complete event compliance.
+**Hackathon status:** an authenticated call using the participant's existing key is verified and captured in [evidence](evidence/README.md). The Basic account does not establish receipt of the campaign Startup grant, which remains unverified. Runway Guard is submitted to Build with CMC in Markets and Trading Tools and is under review. DoraHacks public visibility awaits moderation. YouTube is public and its playback is verified. One X post links the BUIDL and YouTube video with #BuildwithCMC. The user confirmed the required platform terms and publication. Do not claim the campaign grant, paid licensing approval or complete event compliance.
 
 ## Run the Firebase application locally
 

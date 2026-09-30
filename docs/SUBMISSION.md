@@ -3,10 +3,14 @@
 **Can your crypto treasury still pay your team?**
 
 **Track:** Markets and Trading Tools  
+**DoraHacks:** https://dorahacks.io/buidl/49254  
+**Status:** Submitted to Build with CMC, under review. Public visibility awaits moderation.  
+**X post:** https://x.com/ShivamGuptaim/status/2105269446298550656  
 **Builder:** Shivam Gupta  
 **Public repository:** https://github.com/shi1720/coinmarketcap  
 **Working demo:** https://runway-guard-cmc.web.app  
-**Demo video:** Add the uploaded recording URL before submission.
+**Demo video:** https://youtu.be/CYLWG-bSSB8
+**Hosted backup:** https://runway-guard-cmc.web.app/demo.html
 
 ## The problem
 

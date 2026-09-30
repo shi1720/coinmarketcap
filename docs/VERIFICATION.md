@@ -15,4 +15,4 @@ Live Google sign-in and production-service storage checks provide separate evide
 
 ## Submission status
 
-An existing participant-owned CMC key is configured in the server runtime, and authenticated HTTP 200 five-asset evidence is captured. The account is Basic. Campaign Startup access remains unverified, so do not claim the campaign grant or complete event compliance. Registration, eligibility, video upload, DoraHacks entry and X post require their own confirmation. No customer traction or revenue is claimed.
+An existing participant-owned CMC key is configured in the server runtime, and authenticated HTTP 200 five-asset evidence is captured. The account is Basic. Campaign Startup access remains unverified, so do not claim the campaign grant or complete event compliance. YouTube publication, the X post and final hackathon submission are confirmed. DoraHacks public visibility awaits moderation. Eligibility and campaign grant status retain their separate verification requirements. No customer traction or revenue is claimed.
