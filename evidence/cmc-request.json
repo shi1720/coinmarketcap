@@ -1,0 +1,30 @@
+{
+  "method": "GET",
+  "endpoint": "https://pro-api.coinmarketcap.com/public-api/v3/cryptocurrency/quotes/latest?id=1,1027,5426,3408,825&convert=USD",
+  "capturedAt": "2026-09-30T09:27:47.115Z",
+  "source": "keyless",
+  "status": 200,
+  "returnedAssets": [
+    {
+      "id": 1,
+      "symbol": "BTC"
+    },
+    {
+      "id": 825,
+      "symbol": "USDT"
+    },
+    {
+      "id": 1027,
+      "symbol": "ETH"
+    },
+    {
+      "id": 3408,
+      "symbol": "USDC"
+    },
+    {
+      "id": 5426,
+      "symbol": "SOL"
+    }
+  ],
+  "requestHeaders": "Accept: application/json; API key intentionally omitted from evidence"
+}

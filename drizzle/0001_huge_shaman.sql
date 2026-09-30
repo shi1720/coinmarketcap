@@ -1,0 +1,1 @@
+CREATE INDEX `idx_reports_owner_created` ON `reports` (`owner`,`created_at`);
