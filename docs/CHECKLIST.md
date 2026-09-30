@@ -19,7 +19,7 @@
 
 ## Working product
 
-- [x] Public deployment published: https://runway-guard.sg127977958.chatgpt.site (confirmed by successful Sites deployment status).
+- [x] Public deployment published: https://runway-guard-cmc.web.app (confirmed by successful Firebase Hosting deployment status).
 - [ ] Open the public deployment in a fresh browser session.
 - [x] Hosted sample mode works before sign-in.
 - [x] Enter supported balances manually and import a valid CSV; reject malformed inputs.
@@ -39,7 +39,7 @@
 
 ## Public deliverables
 
-- [x] Public repository: https://github.com/shi1720/coinmarketcap (confirmed by successful Sites deployment status).
+- [x] Public repository: https://github.com/shi1720/coinmarketcap (confirmed by successful Firebase Hosting deployment status).
 - [ ] Verify README setup steps, actual deployed URL, endpoint, limitations and attribution.
 - [ ] Replace submission placeholders with real deployment and video URLs.
 - [ ] Record the demo using `DEMO-SCRIPT.md`; confirm narrated capabilities match the deployed app.

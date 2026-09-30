@@ -54,3 +54,5 @@ firebase-debug.log
 
 /dist-firebase/
 /firebase-public-config.json
+
+/.firebase/

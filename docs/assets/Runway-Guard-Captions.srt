@@ -1,0 +1,156 @@
+1
+00:00:00,050 --> 00:00:02,556
+Hi, I'm Shivam Gupta.
+
+2
+00:00:02,556 --> 00:00:07,242
+This is Runway Guard, a tool that asks whether your
+crypto treasury
+
+3
+00:00:07,242 --> 00:00:08,920
+can still pay your team.
+
+4
+00:00:08,920 --> 00:00:12,897
+A portfolio balance tells you what your assets are
+worth today.
+
+5
+00:00:12,897 --> 00:00:17,291
+It does not tell you whether the next payroll payment
+is covered
+
+6
+00:00:17,291 --> 00:00:20,312
+if prices fall or funds become inaccessible.
+
+7
+00:00:20,312 --> 00:00:22,755
+Here is a fictional sample team.
+
+8
+00:00:22,755 --> 00:00:28,189
+It has crypto holdings, twenty-five thousand dollars in
+fiat cash, and forty-two
+
+9
+00:00:28,189 --> 00:00:31,178
+thousand dollars in monthly operating costs.
+
+10
+00:00:31,178 --> 00:00:37,140
+I can enter balances manually or import a CSV, then
+schedule payroll
+
+11
+00:00:37,140 --> 00:00:39,332
+and add one-off expenses.
+
+12
+00:00:39,332 --> 00:00:43,607
+Refreshing fetches real CoinMarketCap quotes.
+
+13
+00:00:43,607 --> 00:00:49,048
+The evidence view shows the response and timestamps
+behind the calculation.
+
+14
+00:00:49,048 --> 00:00:54,213
+Now I apply a forty percent decline to volatile assets
+and a
+
+15
+00:00:54,213 --> 00:00:56,193
+ten percent USDC depeg.
+
+16
+00:00:56,193 --> 00:00:59,332
+These are assumptions, not predictions.
+
+17
+00:00:59,332 --> 00:01:04,403
+The chart compares current and stressed coverage as
+expenses come due.
+
+18
+00:01:04,403 --> 00:01:07,713
+Locked assets cannot fund those expenses.
+
+19
+00:01:07,713 --> 00:01:12,528
+A recurring payroll row schedules its share of monthly
+burn.
+
+20
+00:01:12,528 --> 00:01:15,511
+The app does not count that expense twice.
+
+21
+00:01:15,511 --> 00:01:19,732
+I can also simulate losing access to an asset and see
+how
+
+22
+00:01:19,732 --> 00:01:21,732
+the available funds change.
+
+23
+00:01:21,732 --> 00:01:26,217
+The reserve what-if estimates how much fiat we need for
+our chosen
+
+24
+00:01:26,217 --> 00:01:31,518
+reserve period, and which available volatile holdings
+could fill the gap under
+
+25
+00:01:31,518 --> 00:01:32,741
+these assumptions.
+
+26
+00:01:32,741 --> 00:01:34,474
+This is a planning estimate.
+
+27
+00:01:34,474 --> 00:01:39,891
+The app does not execute trades, and reported market
+volume does not
+
+28
+00:01:39,891 --> 00:01:41,803
+guarantee sale proceeds.
+
+29
+00:01:41,803 --> 00:01:47,039
+A saved report preserves the inputs, quotes and
+assumptions so someone else
+
+30
+00:01:47,039 --> 00:01:49,971
+can review the result after prices change.
+
+31
+00:01:49,971 --> 00:01:55,681
+The commercial hypothesis is a focused tool for small
+crypto-native teams.
+
+32
+00:01:55,681 --> 00:02:00,891
+The next step is to validate a weekly planning workflow
+with those
+
+33
+00:02:00,891 --> 00:02:04,048
+teams, then add paid reviews and alerts.
+
+34
+00:02:04,048 --> 00:02:08,943
+Runway Guard connects a changing market to a concrete
+question: can we
+
+35
+00:02:08,943 --> 00:02:11,250
+cover the obligations coming due?

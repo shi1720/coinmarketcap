@@ -22,7 +22,7 @@ Payroll timing matters too. A recurring payroll row schedules its share of the m
 
 The reserve what-if asks how much fiat would cover our chosen reserve period. It shows a gap and a deterministic estimate of available volatile assets needed to fill it, using stressed prices and our fee assumption. It does not execute a trade. CoinMarketCap's reported volume is context, not a promise that we can sell at this price.
 
-I can sign in with ChatGPT, save my own workspace, and preserve a report with the inputs, market snapshot, scenario and assumptions. The report exports as JSON or a clean printable document. That makes the result reviewable after prices change.
+I can sign in with Google, save my own workspace, and preserve a report with the inputs, market snapshot, scenario and assumptions. The report exports as JSON or a clean printable document. That makes the result reviewable after prices change.
 
 The business hypothesis is a focused tool for small crypto-native teams and their finance operators. There is no claimed customer traction or paid billing yet. The working product is the readiness workflow you just saw.
 

@@ -294,7 +294,9 @@ export default function Dashboard({
   const [evidenceOpen, setEvidenceOpen] = useState(false);
   const refreshRef = useRef(false);
   const toolState = useRef({ workspace, market, now });
-  useEffect(() => { toolState.current = { workspace, market, now }; }, [workspace, market, now]);
+  useEffect(() => {
+    toolState.current = { workspace, market, now };
+  }, [workspace, market, now]);
   useEffect(() => {
     const context = (
       document as Document & {
@@ -320,13 +322,17 @@ export default function Dashboard({
     return () => lifecycle.abort();
   }, []);
   const dirty = JSON.stringify(workspace) !== saved;
-  const localDraftKey = draftKey ?? `runway-guard-draft:${personal ? user?.email ?? "personal" : "sample"}`;
+  const localDraftKey =
+    draftKey ??
+    `runway-guard-draft:${personal ? (user?.email ?? "personal") : "sample"}`;
   const draftLoaded = useRef(false);
   useEffect(() => {
     if (draftLoaded.current) return;
     draftLoaded.current = true;
     try {
-      const transferred = personal ? sessionStorage.getItem("runway-guard-signin-draft") : null;
+      const transferred = personal
+        ? sessionStorage.getItem("runway-guard-signin-draft")
+        : null;
       const raw = transferred ?? localStorage.getItem(localDraftKey);
       if (raw) {
         const parsed = workspaceSchema.safeParse(JSON.parse(raw));
@@ -338,34 +344,54 @@ export default function Dashboard({
         }
         if (transferred) sessionStorage.removeItem("runway-guard-signin-draft");
       }
-    } catch { /* Storage may be unavailable in private browser modes. */ }
+    } catch {
+      /* Storage may be unavailable in private browser modes. */
+    }
   }, [localDraftKey, saved, personal]);
   useEffect(() => {
     if (!draftLoaded.current) return;
     try {
       if (dirty) localStorage.setItem(localDraftKey, JSON.stringify(workspace));
       else localStorage.removeItem(localDraftKey);
-    } catch { /* Draft remains in memory if browser storage is full. */ }
+    } catch {
+      /* Draft remains in memory if browser storage is full. */
+    }
   }, [workspace, dirty, localDraftKey]);
   useEffect(() => {
     if (!dirty) return;
-    const guard = (event: BeforeUnloadEvent) => { event.preventDefault(); event.returnValue = ""; };
+    const guard = (event: BeforeUnloadEvent) => {
+      event.preventDefault();
+      event.returnValue = "";
+    };
     window.addEventListener("beforeunload", guard);
     return () => window.removeEventListener("beforeunload", guard);
   }, [dirty]);
   async function beginSignIn() {
     try {
-      if (dirty) sessionStorage.setItem("runway-guard-signin-draft", JSON.stringify(workspace));
+      sessionStorage.setItem(
+        "runway-guard-signin-draft",
+        JSON.stringify(workspace),
+      );
       if (signIn) await signIn();
       else window.location.href = "/signin-with-chatgpt?return_to=/workspace";
-    } catch (error) { toast.error(error instanceof Error ? error.message : "Sign-in could not start."); }
+    } catch (error) {
+      toast.error(
+        error instanceof Error ? error.message : "Sign-in could not start.",
+      );
+    }
   }
   async function beginSignOut() {
-    if (dirty && !window.confirm("Your unsaved draft stays in this browser. Sign out now?")) return;
+    if (
+      dirty &&
+      !window.confirm("Your unsaved draft stays in this browser. Sign out now?")
+    )
+      return;
     try {
       if (signOut) await signOut();
       else window.location.href = "/signout-with-chatgpt?return_to=/";
-    } catch (error) { toast.error(error instanceof Error ? error.message : "Sign-out failed."); }
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : "Sign-out failed.");
+    }
   }
   const refresh = useCallback(async () => {
     if (refreshRef.current) return;
@@ -391,7 +417,10 @@ export default function Dashboard({
       setNow(new Date().toISOString());
       if (document.visibilityState === "visible") void refresh();
     }, 60000);
-    return () => { clearTimeout(initialRefresh); clearInterval(timer); };
+    return () => {
+      clearTimeout(initialRefresh);
+      clearInterval(timer);
+    };
   }, [refresh]);
   const loadReports = useCallback(async () => {
     if (!user || !personal) return;
@@ -590,15 +619,37 @@ export default function Dashboard({
           {personal ? (
             <>
               <span className="account-name">{user?.name}</span>
-              <a
-                className="sign-in"
-                href="/signout-with-chatgpt?return_to=/"
-                target="_top"
-                onClick={(event) => { event.preventDefault(); void beginSignOut(); }}
-              >
-                Sign out
-              </a>
+              {signOut ? (
+                <button
+                  type="button"
+                  className="sign-in"
+                  onClick={() => void beginSignOut()}
+                >
+                  Sign out
+                </button>
+              ) : (
+                <a
+                  className="sign-in"
+                  href="/signout-with-chatgpt?return_to=/"
+                  target="_top"
+                  onClick={(event) => {
+                    event.preventDefault();
+                    void beginSignOut();
+                  }}
+                >
+                  Sign out
+                </a>
+              )}
             </>
+          ) : signIn ? (
+            <button
+              type="button"
+              className="sign-in"
+              title={`Sign in with ${authLabel}`}
+              onClick={() => void beginSignIn()}
+            >
+              {user ? "My workspace" : "Sign in to save"}
+            </button>
           ) : (
             <a
               className="sign-in"
@@ -609,7 +660,12 @@ export default function Dashboard({
                   : "/signin-with-chatgpt?return_to=/workspace"
               }
               target="_top"
-              onClick={(event) => { if (signIn || !user) { event.preventDefault(); void beginSignIn(); } }}
+              onClick={(event) => {
+                if (signIn || !user) {
+                  event.preventDefault();
+                  void beginSignIn();
+                }
+              }}
             >
               {user ? "My workspace" : "Sign in to save"}
             </a>
@@ -1828,19 +1884,29 @@ export default function Dashboard({
                 onChange={async (e) => {
                   const f = e.target.files?.[0];
                   if (f) {
+                    setCsvError("");
+                    e.currentTarget.value = "";
                     if (f.size > 16384) {
                       setCsvError("Maximum file size is 16 KB.");
                       return;
                     }
-                    setCsv(await f.text());
-                    setCsvError("");
+                    try {
+                      setCsv(await f.text());
+                    } catch {
+                      setCsvError(
+                        "Could not read this file. Try again or paste its CSV contents.",
+                      );
+                    }
                   }
                 }}
               />
             </label>
             <button
               className="button ghost"
-              onClick={() => setCsv(CSV_EXAMPLE)}
+              onClick={() => {
+                setCsv(CSV_EXAMPLE);
+                setCsvError("");
+              }}
             >
               Use example
             </button>
@@ -1856,6 +1922,7 @@ export default function Dashboard({
               try {
                 const holdings = parseHoldingsCSV(csv);
                 update({ holdings });
+                setCsvError("");
                 setImportOpen(false);
                 toast.success(
                   `Imported ${holdings.length} holdings into your draft.`,

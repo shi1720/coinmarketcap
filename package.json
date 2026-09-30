@@ -18,7 +18,7 @@
     "dev:firebase": "vite --config firebase/vite.config.ts --mode firebase --host 127.0.0.1 --port 5174",
     "build:firebase": "vite build --config firebase/vite.config.ts --mode firebase",
     "deploy:firebase": "node scripts/deploy-firebase.mjs",
-    "test:rules": "firebase emulators:exec --only firestore --project demo-runway-guard --non-interactive \"node --test tests/firebase-rules.test.mjs\""
+    "test:rules": "npx --yes firebase-tools@15.32.0 emulators:exec --only firestore --project demo-runway-guard --non-interactive \"node --test tests/firebase-rules.test.mjs\""
   },
   "dependencies": {
     "@base-ui/react": "^1.7.0",

@@ -5,7 +5,7 @@
 **Track:** Markets and Trading Tools  
 **Builder:** Shivam Gupta  
 **Public repository:** https://github.com/shi1720/coinmarketcap  
-**Working demo:** https://runway-guard.sg127977958.chatgpt.site  
+**Working demo:** https://runway-guard-cmc.web.app  
 **Demo video:** Add the uploaded recording URL before submission.
 
 ## The problem
@@ -21,7 +21,7 @@ Runway Guard puts the obligations first: how much is available, what is due, and
 - Fetch real CoinMarketCap USD quotes and compare current and stressed coverage over time.
 - Apply a volatile-asset drawdown, selected stablecoin depeg and optional asset-access freeze. Locked and scenario-frozen holdings cannot fund obligations.
 - Inspect a deterministic fiat-reserve what-if, including the units of available volatile assets needed under stressed marks and a configurable fee assumption.
-- Sign in with ChatGPT to save a personal workspace in D1.
+- Sign in with Google or create a guest account to save a personal workspace in Firestore.
 - Save an immutable report snapshot, export JSON and print a formatted HTML report.
 - Inspect live API evidence and the assumptions behind each calculation.
 

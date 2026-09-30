@@ -2,18 +2,17 @@
 
 Observed results, not a production security certification.
 
-- 32 deterministic tests pass. Financial dates/rounding/exclusions, parsers, retries/cache, schema, report escaping and optional WebMCP calculation functions covered.
-- 24 loopback HTTP checks pass. Anonymous/forged identity rejection, same-origin writes, invalid/oversized JSON (400/413), schema rejection, durable saves, revision conflicts, immutable reports and genuine CMC quotes.
-- TypeScript strict validation passes. Production build passes. GitHub Actions initial release verification succeeded; current release reruns it.
-- `npm audit --omit=dev`: zero vulnerabilities at release check.
-- Native Sites publication status succeeded. Hosted sample browser showed genuine five-asset CMC quotes and raw endpoint evidence, 9.2-month marked runway / 6.2 stressed months, $146,000 target and $121,000 fiat gap. Values vary with live quotes.
-- Local browser: signed workspace save/reload, preserved sample provenance, immutable record creation, CSV valid/invalid, locked/frozen exclusions and hypothetical reserve preview verified.
-- Desktop and 390px mobile layouts inspected. No document horizontal overflow at 390px. PDF five pages and pitch seven slides rendered and visually reviewed.
+- 41 calculation and application unit tests pass.
+- Three Firestore emulator integration tests pass, including cross-account access denial and report immutability.
+- Firebase Hosting deployment succeeded at https://runway-guard-cmc.web.app.
+- Google sign-in succeeded live as Shivam Gupta. Google and anonymous providers are enabled, and the Firebase domain is authorized.
+- The deployed browser displayed genuine keyless CMC quotes.
+- 25/25 live production Firestore REST checks passed using two distinct ephemeral anonymous-auth identities. See [Live-Privacy-Test.md](Live-Privacy-Test.md) for the exercised access, revision and report-immutability paths.
 
 ## Verification limits
 
-Hosted ChatGPT sign-in reaches email verification; user-held verification code is required. Hosted save/reload and isolation between two different hosted identities remain unverified. Owner scoping is implemented and local forged-header rejection is verified. Report output generation/escaping and immutable API records pass; automated browser download completion was not confirmed. The browser lacks native WebMCP registration support, so only pure tool functions were tested. Screenshots use fictional sample balances and real CMC quotes.
+Live Google sign-in and production-service storage checks provide separate evidence. The 25 REST checks verify exercised ownership, cross-account rejection, revisions and immutable reports. They do not certify every account-linking or Google-provider UI path. A final report export walkthrough remains useful. Guest-to-existing-Google account transition succeeded live and restored Shivam Gupta's existing workspace without a blocked second popup. Firebase report calculations run locally and do not carry independent backend financial attestation.
 
-## Submission gates
+## Submission status
 
-Participant-owned campaign key and authenticated evidence, matching CMC registration email, eligibility, narrated video upload, DoraHacks entry and X post are pending. No customer demand, revenue or paid licensing validation is claimed. Commercial launch requires operational monitoring, backups/restore, retention/deletion and an independent security review.
+The participant-owned campaign CMC key and authenticated call evidence remain unavailable. Do not claim own-key compliance. Registration, eligibility, video upload, DoraHacks entry and X post require their own confirmation. No customer traction or revenue is claimed.
