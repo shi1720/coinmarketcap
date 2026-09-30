@@ -42,10 +42,10 @@
 - [x] Public repository: https://github.com/shi1720/coinmarketcap (confirmed by successful Firebase Hosting deployment status).
 - [ ] Verify README setup steps, actual deployed URL, endpoint, limitations and attribution.
 - [x] Use the verified Firebase, YouTube and BUIDL URLs.
-- [x] Publish the final 131.328-second authenticated demo, 17 scenes and 35 caption cues: https://youtu.be/CYLWG-bSSB8.
-- [x] Publish YouTube video: https://youtu.be/CYLWG-bSSB8. Playback verified.
+- [x] Publish the final 137.5-second authenticated demo, 33 timed caption cues: https://youtu.be/0XljJqixhMU.
+- [x] Publish YouTube video: https://youtu.be/0XljJqixhMU. Replacement playback is verified at 46 seconds with readyState 4 and no media error.
 - [x] Submit the DoraHacks entry: https://dorahacks.io/buidl/49254. Confirmed under review. Public visibility awaits moderation.
-- [x] Publish the required X post linking BUIDL and YouTube with #BuildwithCMC: https://x.com/ShivamGuptaim/status/2105269446298550656.
+- [x] Publish the required X post linking BUIDL and YouTube with #BuildwithCMC: https://x.com/ShivamGuptaim/status/2105282566807015714.
 - [ ] Verify all links from a signed-out browser.
 
 ## Honest claims and commercial follow-up

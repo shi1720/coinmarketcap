@@ -1,0 +1,111 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:05.453
+Hi I'm Shivam Gupta This is Runway Guard Can
+
+00:00:05.453 --> 00:00:08.982
+your crypto treasury still pay your team A portfolio
+
+00:00:08.982 --> 00:00:12.461
+balance tells you what your assets are worth today
+
+00:00:13.377 --> 00:00:16.032
+It does not tell you whether the next payroll
+
+00:00:16.045 --> 00:00:19.937
+payment is covered if prices fall or funds become
+
+00:00:19.988 --> 00:00:24.563
+inaccessible Here is a fictional sample team It has
+
+00:00:24.588 --> 00:00:28.983
+crypto holdings twenty five thousand dollars in cash
+and
+
+00:00:28.983 --> 00:00:33.014
+forty two thousand dollars in monthly operating costs
+You
+
+00:00:33.053 --> 00:00:37.112
+can enter balances manually or import a C S
+
+00:00:37.125 --> 00:00:42.371
+V file Then schedule payroll and add individual
+expenses
+
+00:00:42.601 --> 00:00:47.165
+Refresh fetches real CoinMarketCap prices The evidence
+
+00:00:47.216 --> 00:00:51.366
+view shows the response and timestamps behind the
+calculation
+
+00:00:51.596 --> 00:00:55.423
+Now let's assume a forty percent decline in volatile
+
+00:00:55.488 --> 00:00:58.542
+assets and a ten percent drop in U S
+
+00:00:58.542 --> 00:01:03.490
+D Coin These are assumptions not predictions The chart
+
+00:01:03.503 --> 00:01:07.446
+compares current and stressed coverage as expenses come
+due
+
+00:01:08.375 --> 00:01:12.600
+Locked assets cannot fund those expenses A recurring
+payroll
+
+00:01:12.600 --> 00:01:16.919
+row schedules its share of monthly costs The app
+
+00:01:16.932 --> 00:01:20.383
+does not count that expense twice You can also
+
+00:01:20.383 --> 00:01:23.876
+simulate losing access to an asset and see how
+
+00:01:23.876 --> 00:01:27.753
+the available funds change The reserve preview
+estimates how
+
+00:01:27.753 --> 00:01:31.129
+much cash we need for our chosen reserve period
+
+00:01:32.045 --> 00:01:35.460
+It shows which available volatile holdings could fill
+the
+
+00:01:35.460 --> 00:01:39.388
+gap under these assumptions This is a planning estimate
+
+00:01:40.305 --> 00:01:45.086
+The app does not execute trades Reported market volume
+
+00:01:45.086 --> 00:01:49.156
+does not guarantee sale proceeds A saved report
+preserves
+
+00:01:49.156 --> 00:01:54.428
+the inputs prices and assumptions Someone else can
+review
+
+00:01:54.428 --> 00:01:57.918
+the result after prices change We are starting with
+
+00:01:57.918 --> 00:02:01.436
+a focused problem for small teams funded by crypto
+
+00:02:02.366 --> 00:02:05.356
+The next step is to validate a weekly planning
+
+00:02:05.356 --> 00:02:09.234
+workflow with those teams then add paid reviews and
+
+00:02:09.286 --> 00:02:12.944
+alerts Runway Guard connects a changing market to a
+
+00:02:12.944 --> 00:02:17.353
+concrete question Can we cover the obligations coming
+due

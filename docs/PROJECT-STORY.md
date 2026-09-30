@@ -41,7 +41,7 @@ Validate the workflow with founders and finance operators before expanding it. T
 
 Live app: https://runway-guard-cmc.web.app
 
-Narrated demo with English captions: https://youtu.be/CYLWG-bSSB8
+Narrated demo with English captions: https://youtu.be/0XljJqixhMU
 
 1. Open the public Northstar sample. Its balances are fictional; the CMC quotes are real.
 2. Open Treasury & obligations. Inspect the locked BTC row and the dated payroll and infrastructure expense. Import the example CSV or enter your own sample values.

@@ -1,48 +1,51 @@
-# Runway Guard demo
+# Runway Guard voiceover
 
-**Speaker:** Shivam Gupta  
-**Target length:** 2 minutes 45 seconds to 3 minutes, at a calm speaking pace.  
-**Recording:** Capture the deployed application at readable zoom. Narration below can be read verbatim. Screen actions are separate and should not be spoken.
+Project author: Shivam Gupta. Narration: disclosed AI voice, `en-IN-PrabhatNeural`, rate `-3%`. Current generated audio duration: **137.48 seconds**, approximately **2 minutes 17.5 seconds**.
 
-Before recording, refresh quotes and verify the deployed controls. Use the sample workspace: 80 ETH, 500 SOL, 80,000 USDC, 30,000 USDT, 0.5 locked BTC, $25,000 fiat, $42,000 monthly burn and a $20,000 one-off infrastructure renewal due in 14 days. Total market values change; the script intentionally avoids reading stale prices.
+Read the numbered paragraphs in order. Numbers and action notes are not spoken. The spaced terms Coin Market Cap, C S V and U S D Coin intentionally guide pronunciation. This is the current narration for the replacement recording. Its new publication links are awaiting verification.
 
-## Verbatim narration
+## Spoken script
 
-Hi, I'm Shivam Gupta, and this is Runway Guard. It answers one question: can your crypto treasury still pay your team?
+1. Hi, I'm Shivam Gupta. This is Runway Guard. Can your crypto treasury still pay your team?
 
-A balance can look healthy while the money needed for payroll is exposed to token prices, a stablecoin depeg, or an asset you cannot access. Runway Guard connects market data to the obligations that actually matter.
+2. A portfolio balance tells you what your assets are worth today. It does not tell you whether the next payroll payment is covered if prices fall, or funds become inaccessible.
 
-Here is our fictional sample team, Northstar Labs. It holds ETH, SOL, USDC and USDT, plus half a Bitcoin that is locked. There is twenty-five thousand dollars in fiat cash, forty-two thousand dollars in monthly operating costs, and an infrastructure renewal due in two weeks. These are editable sample inputs, not a real customer's finances.
+3. Here is a fictional sample team. It has crypto holdings, twenty five thousand dollars in cash, and forty two thousand dollars in monthly operating costs.
 
-I can enter balances or import a CSV. Refreshing makes a real CoinMarketCap call for all five assets. The evidence view shows the endpoint, response and timestamps, so you can inspect the data behind the numbers.
+4. You can enter balances manually, or import a C S V file. Then schedule payroll and add individual expenses.
 
-Now let's stress the treasury. I'm applying a forty percent decline to volatile assets and a ten percent depeg to USDC. These are assumptions, not predictions. The chart compares current coverage with stressed coverage as obligations become due. The locked Bitcoin contributes to marked treasury value, but it cannot pay a bill.
+5. Refresh fetches real Coin Market Cap prices. The evidence view shows the response and timestamps behind the calculation.
 
-Payroll timing matters too. A recurring payroll row schedules its share of the monthly burn; the app does not count that expense twice. One-off obligations are additional. If I simulate losing access to USDC, its available value is excluded from the stressed case. You can see how that changes coverage and the warnings.
+6. Now let's assume a forty percent decline in volatile assets, and a ten percent drop in U S D Coin. These are assumptions, not predictions.
 
-The reserve what-if asks how much fiat would cover our chosen reserve period. It shows a gap and a deterministic estimate of available volatile assets needed to fill it, using stressed prices and our fee assumption. It does not execute a trade. CoinMarketCap's reported volume is context, not a promise that we can sell at this price.
+7. The chart compares current and stressed coverage as expenses come due. Locked assets cannot fund those expenses.
 
-I can sign in with Google, save my own workspace, and preserve a report with the inputs, market snapshot, scenario and assumptions. The report exports as JSON or a clean printable document. That makes the result reviewable after prices change.
+8. A recurring payroll row schedules its share of monthly costs. The app does not count that expense twice.
 
-The business hypothesis is a focused tool for small crypto-native teams and their finance operators. There is no claimed customer traction or paid billing yet. The working product is the readiness workflow you just saw.
+9. You can also simulate losing access to an asset, and see how the available funds change.
 
-This build now uses an existing participant-owned CoinMarketCap key, with a verified authenticated call. Campaign Startup access remains unverified. Runway Guard turns market prices into a concrete operating question: are the next obligations covered, and what assumptions does that answer depend on?
+10. The reserve preview estimates how much cash we need for our chosen reserve period. It shows which available volatile holdings could fill the gap under these assumptions.
+
+11. This is a planning estimate. The app does not execute trades. Reported market volume does not guarantee sale proceeds.
+
+12. A saved report preserves the inputs, prices, and assumptions. Someone else can review the result after prices change.
+
+13. We are starting with a focused problem for small teams funded by crypto. The next step is to validate a weekly planning workflow with those teams, then add paid reviews and alerts.
+
+14. Runway Guard connects a changing market to a concrete question. Can we cover the obligations coming due?
 
 ## Screen actions
 
-| Segment | Action |
-|---|---|
-| Opening | Show product header and coverage summary, with the sample workspace already loaded. |
-| Sample inputs | Show holdings and locked BTC, then cash, burn and one-off obligation. |
-| CMC evidence | Click refresh; open evidence and show endpoint, timestamps and a readable response fragment. Avoid secrets. |
-| Stress | Show the 40% volatile and 10% USDC controls and current/stressed chart. |
-| Payroll and freeze | Show the existing $30,000 monthly payroll row due in seven days within $42,000 total burn. Apply USDC access freeze, show resulting warnings, then clear the freeze before the reserve segment. |
-| Reserve | Show target reserve, fiat gap, estimated asset units and planning assumptions. |
-| Account/report | Use a signed-in personal workspace, save and create a report; briefly show JSON download and print view. |
-| Closing | Return to the coverage summary. Hold for two seconds after the last sentence. |
+- Paragraphs 1 and 2: Product heading and readiness summary.
+- Paragraphs 3 and 4: Fictional sample holdings, cash, monthly costs and obligation editor.
+- Paragraph 5: Refresh, then the authenticated API evidence view.
+- Paragraphs 6 and 7: Stress assumptions and current/stressed coverage chart.
+- Paragraph 8: Existing recurring payroll row within total monthly costs.
+- Paragraph 9: Asset access freeze and excluded funding.
+- Paragraphs 10 and 11: Reserve calculation, hypothetical preview and planning assumptions.
+- Paragraph 12: Saved report, JSON export or print view.
+- Paragraphs 13 and 14: Return to the summary and hold after the final question.
 
-## Final-recording updates
+## Recording and publication checks
 
-Authenticated own-key evidence is now verified. Keep the Basic account and unverified campaign Startup grant distinction accurate.
-
-Keep real keys, email inboxes and personal account details out of the recording. Use the fictional workspace throughout. Upload the video and insert its actual URL into the submission and X draft.
+Application: https://runway-guard-cmc.web.app. Google and guest account workflows and authenticated live CMC data are verified. Use fictional sample finances, keep private account information and API secrets off screen, and disclose AI narration. Replacement YouTube and Firebase playback are verified. The corrected X reply and DoraHacks story link the replacement. The 33-cue English SRT is published in Studio; watch-page CC availability is not yet verified.
